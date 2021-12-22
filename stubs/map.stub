@@ -1,0 +1,8 @@
+
+
+    public static function map(): array
+    {
+        return [
+DummyKeyValuePairs
+        ];
+    }

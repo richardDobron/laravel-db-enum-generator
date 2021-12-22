@@ -1,0 +1,34 @@
+<?php
+
+namespace dobron\LaravelDatabaseEnum;
+
+use Orchestra\Testbench\TestCase;
+use dobron\LaravelDatabaseEnum\Providers\LaravelDatabaseEnumServiceProvider;
+
+/**
+ * The laravel enum service provider test.
+ *
+ */
+class LaravelEnumServiceProviderTest extends TestCase
+{
+    /**
+     * Get package providers.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return array
+     */
+    protected function getPackageProviders($app)
+    {
+        return [
+            LaravelDatabaseEnumServiceProvider::class,
+        ];
+    }
+
+    /**
+     * @test
+     */
+    public function artisanCommandIsLoaded()
+    {
+        $this->artisan('make:enum --help')->assertExitCode(0);
+    }
+}

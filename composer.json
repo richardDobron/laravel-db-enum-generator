@@ -1,0 +1,58 @@
+{
+    "name": "dobron/laravel-db-enum-generator",
+    "type": "library",
+    "description": "Database enum generator for Laravel.",
+    "keywords": [
+        "database",
+        "model",
+        "eloquent",
+        "generator",
+        "enum"
+    ],
+    "homepage": "https://github.com/richardDobron/laravel-db-enum-generator",
+    "license": "MIT",
+    "authors": [{
+        "name": "Richard Dobroň",
+        "homepage": "https://github.com/richardDobron",
+        "role": "Developer"
+    }],
+    "require": {
+        "php": "^7.1",
+        "illuminate/console": "^5.6|^6.0|^7.0|^8.0",
+        "illuminate/support": "^5.6|^6.0|^7.0|^8.0"
+    },
+    "require-dev": {
+        "doctrine/inflector": "^2.0",
+        "orchestra/testbench": "^3.6|^4.0|^5.0|^6.0",
+        "phpunit/phpunit": ">=7.0",
+        "squizlabs/php_codesniffer": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "dobron\\LaravelDatabaseEnum\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "dobron\\LaravelDatabaseEnum\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check-style": "phpcs src tests",
+        "fix-style": "phpcbf src tests"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+              "dobron\\LaravelDatabaseEnum\\Providers\\LaravelDatabaseEnumServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
