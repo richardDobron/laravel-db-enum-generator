@@ -123,7 +123,7 @@ class EnumMakeCommand extends GeneratorCommand
      * @return array
      * @throws \Exception
      */
-    private function loadEnums() : array
+    private function loadEnums()
     {
         $id = $this->option('id');
         $slug = $this->option('slug');
@@ -182,7 +182,7 @@ class EnumMakeCommand extends GeneratorCommand
      * @param array $parts
      * @return EnumDefinition
      */
-    private function hydrateEnumDefinition(array $parts) : EnumDefinition
+    private function hydrateEnumDefinition(array $parts)
     {
         $enum = new EnumDefinition;
         $enum->name = $this->prepareConstantName($parts[0]);
@@ -197,7 +197,7 @@ class EnumMakeCommand extends GeneratorCommand
      *
      * @return string
      */
-    private function prepareConstantName($name) : string
+    private function prepareConstantName($name)
     {
         $name = strtoupper(str_replace('-', '_', $this->inflector->urlize($name)));
 
@@ -213,7 +213,7 @@ class EnumMakeCommand extends GeneratorCommand
      *
      * @return string
      */
-    private function compileCommand() : string
+    private function compileCommand()
     {
         $arguments = $this->arguments();
         unset($arguments[0]);

@@ -112,7 +112,7 @@ class EnumMakeCommandTest extends TestCase
      * @param string $path
      * @return string
      */
-    protected function appPath(string $path = '') : string
+    protected function appPath($path = '')
     {
         $appPath = $this->getBasePath() . '/app';
 

@@ -16,7 +16,7 @@ trait ExportsValues
      * @param int $incrementalPadding
      * @return string
      */
-    protected function export($value, int $initialPadding = 0, int $incrementalPadding = 4) : string
+    protected function export($value, $initialPadding = 0, $incrementalPadding = 4)
     {
         if (is_array($value)) {
             return $this->exportArray($value, $initialPadding, $incrementalPadding);
@@ -31,7 +31,7 @@ trait ExportsValues
      * @param mixed $value
      * @return string
      */
-    protected function exportScalar($value) : string
+    protected function exportScalar($value)
     {
         if (is_null($value)) {
             return 'null';
@@ -56,7 +56,7 @@ trait ExportsValues
      * @param int $incrementalPadding
      * @return string
      */
-    protected function exportArray(array $array, int $initialPadding = 0, int $incrementalPadding = 4) : string
+    protected function exportArray(array $array, $initialPadding = 0, $incrementalPadding = 4)
     {
         $padding = $initialPadding + $incrementalPadding;
         $indentation = str_repeat(' ', $padding);

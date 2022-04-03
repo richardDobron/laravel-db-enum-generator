@@ -37,7 +37,7 @@ class StubAssembler
      * @param string $stub
      * @param array $enums
      */
-    public function __construct(string $stub, array $enums)
+    public function __construct($stub, array $enums)
     {
         $this->stub = $stub;
         $this->enums = $enums;
@@ -48,7 +48,7 @@ class StubAssembler
      *
      * @return string
      */
-    public function getStub() : string
+    public function getStub()
     {
         return $this->stub;
     }
@@ -59,7 +59,7 @@ class StubAssembler
      * @param string $command
      * @return self
      */
-    public function replaceCommand(string $command) : self
+    public function replaceCommand(string $command)
     {
         $this->stub = str_replace('DummyCommand', $command, $this->stub);
 
@@ -71,7 +71,7 @@ class StubAssembler
      *
      * @return self
      */
-    public function replaceConstants() : self
+    public function replaceConstants()
     {
         $padding = 4;
 
@@ -90,7 +90,7 @@ class StubAssembler
      *
      * @return self
      */
-    public function replaceMap() : self
+    public function replaceMap()
     {
         // Map enums key and value pairs only if enums have values
         if ($this->enumsHaveValues()) {
@@ -109,7 +109,7 @@ class StubAssembler
      *
      * @return bool
      */
-    private function enumsHaveValues() : bool
+    private function enumsHaveValues()
     {
         foreach ($this->enums as $enum) {
             if ($enum->value !== null) {
@@ -125,7 +125,7 @@ class StubAssembler
      *
      * @return self
      */
-    public function replaceMapPairs() : self
+    public function replaceMapPairs()
     {
         $padding = 12;
 
