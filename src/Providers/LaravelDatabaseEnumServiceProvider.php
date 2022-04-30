@@ -2,8 +2,8 @@
 
 namespace dobron\LaravelDatabaseEnum\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use dobron\LaravelDatabaseEnum\Console\Commands\EnumMakeCommand;
+use Illuminate\Support\ServiceProvider;
 
 /**
  * The Laravel Database Enum service provider.

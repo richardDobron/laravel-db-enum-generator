@@ -3,13 +3,13 @@
 namespace dobron\LaravelDatabaseEnum\Console\Commands;
 
 use dobron\LaravelDatabaseEnum\EnumDefinition;
+use dobron\LaravelDatabaseEnum\StubAssembler;
 use Doctrine\Inflector\Inflector;
 use Doctrine\Inflector\InflectorFactory;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use dobron\LaravelDatabaseEnum\StubAssembler;
 
 /**
  * The Artisan command to generate Enum classes.
@@ -135,17 +135,16 @@ class EnumMakeCommand extends GeneratorCommand
                 $id,
                 $slug,
             ], $values))->get();
-
         } elseif ($this->option('model')) {
             $name = $this->option('model');
             if (class_exists($name)) {
                 $reflectionClass = new \ReflectionClass($name);
 
-                if (!$reflectionClass->isSubclassOf('Illuminate\Database\Eloquent\Model')) {
+                if (! $reflectionClass->isSubclassOf('Illuminate\Database\Eloquent\Model')) {
                     throw new \Exception("$name is not subclass of Model");
                 }
 
-                if (!$reflectionClass->IsInstantiable()) {
+                if (! $reflectionClass->IsInstantiable()) {
                     throw new \Exception("$name is not instantiable");
                 }
 
@@ -160,7 +159,7 @@ class EnumMakeCommand extends GeneratorCommand
         }
 
         return $data->filter(function ($row) use ($slug) {
-            return !empty($row->{$slug});
+            return ! empty($row->{$slug});
         })->map(function ($row) use ($id, $slug, $values, $multipleValues) {
             return $this->hydrateEnumDefinition([
               $row->{$slug},
@@ -168,7 +167,7 @@ class EnumMakeCommand extends GeneratorCommand
               $multipleValues
                   ? collect($values)->mapWithKeys(function ($column) use ($row) {
                       return [
-                          $column => $row->{$column}
+                          $column => $row->{$column},
                       ];
                   })->toArray()
                   : $row->{$values[0]},
@@ -224,9 +223,10 @@ class EnumMakeCommand extends GeneratorCommand
             return $item;
         })->map(function ($item, $key) {
             $return = '--'.$key;
-            if ($item!==true) {
+            if ($item !== true) {
                 $return .= '='.$item;
             }
+
             return $return;
         })->implode(' ');
 

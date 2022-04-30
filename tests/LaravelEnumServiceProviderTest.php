@@ -2,8 +2,8 @@
 
 namespace dobron\LaravelDatabaseEnum;
 
-use Orchestra\Testbench\TestCase;
 use dobron\LaravelDatabaseEnum\Providers\LaravelDatabaseEnumServiceProvider;
+use Orchestra\Testbench\TestCase;
 
 /**
  * The laravel enum service provider test.

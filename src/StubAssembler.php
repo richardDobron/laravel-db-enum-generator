@@ -77,6 +77,7 @@ class StubAssembler
 
         $constants = array_map(function (EnumDefinition $enum) use ($padding) {
             $key = $this->export($enum->key, $padding);
+
             return str_repeat(' ', $padding) . "public const {$enum->name} = {$key};";
         }, $this->enums);
 
@@ -131,6 +132,7 @@ class StubAssembler
 
         $pairs = array_map(function (EnumDefinition $enum) use ($padding) {
             $value = $this->export($enum->value, $padding);
+
             return str_repeat(' ', $padding) . "static::{$enum->name} => {$value},";
         }, $this->enums);
 
