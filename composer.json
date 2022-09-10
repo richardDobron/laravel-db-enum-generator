@@ -7,6 +7,7 @@
         "model",
         "eloquent",
         "generator",
+        "laravel",
         "enum"
     ],
     "homepage": "https://github.com/richardDobron/laravel-db-enum-generator",
@@ -18,8 +19,8 @@
     }],
     "require": {
         "php": "^7.0 || ^8.0",
-        "illuminate/console": "^5.6|^5.7|^5.8|^6.0|^7.0|^8.0",
-        "illuminate/support": "^5.6|^5.7|^5.8|^6.0|^7.0|^8.0"
+        "illuminate/console": "^5.6|^5.7|^5.8|^6.0|^7.0|^8.0|^9.0",
+        "illuminate/support": "^5.6|^5.7|^5.8|^6.0|^7.0|^8.0|^9.0"
     },
     "require-dev": {
         "doctrine/inflector": "^2.0",
