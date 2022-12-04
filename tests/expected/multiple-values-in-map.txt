@@ -14,8 +14,8 @@ class LanguagesEnum
 {
     public const SLOVENCINA = 1;
     public const CESTINA = 2;
-    public const AFRICA_AND_MIDDLE_EAST = 3;
-    public const AMERICAS = 4;
+    public const AFRIKAANS = 3;
+    public const ENGLISH_US = 4;
 
     public static function map(): array
     {
@@ -30,15 +30,15 @@ class LanguagesEnum
                 'name' => 'Čeština',
                 'region' => 'Eastern Europe',
             ],
-            static::AFRICA_AND_MIDDLE_EAST => [
+            static::AFRIKAANS => [
                 'id' => 3,
-                'name' => 'Africa and Middle East',
-                'region' => 'Afrikaans',
+                'name' => 'Afrikaans',
+                'region' => 'Africa and Middle East',
             ],
-            static::AMERICAS => [
+            static::ENGLISH_US => [
                 'id' => 4,
-                'name' => 'Americas',
-                'region' => 'English (US)',
+                'name' => 'English (US)',
+                'region' => 'Americas',
             ],
         ];
     }

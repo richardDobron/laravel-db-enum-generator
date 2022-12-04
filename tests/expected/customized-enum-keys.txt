@@ -14,16 +14,16 @@ class Languages
 {
     public const SLOVENCINA = 1;
     public const CESTINA = 2;
-    public const AFRICA_AND_MIDDLE_EAST = 3;
-    public const AMERICAS = 4;
+    public const AFRIKAANS = 3;
+    public const ENGLISH_US = 4;
 
     public static function map(): array
     {
         return [
             static::SLOVENCINA => 'Slovenčina',
             static::CESTINA => 'Čeština',
-            static::AFRICA_AND_MIDDLE_EAST => 'Africa and Middle East',
-            static::AMERICAS => 'Americas',
+            static::AFRIKAANS => 'Afrikaans',
+            static::ENGLISH_US => 'English (US)',
         ];
     }
 }

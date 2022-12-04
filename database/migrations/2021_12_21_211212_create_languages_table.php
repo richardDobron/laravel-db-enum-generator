@@ -33,13 +33,13 @@ class CreateLanguagesTable extends Migration
                 'region' => 'Eastern Europe',
             ],
             [
-                'slug' => 'Afrikaans',
-                'name' => 'af_za',
+                'name' => 'Afrikaans',
+                'language' => 'af_za',
                 'region' => 'Africa and Middle East',
             ],
             [
-                'slug' => 'English (US)',
-                'name' => 'en_US',
+                'name' => 'English (US)',
+                'language' => 'en_US',
                 'region' => 'Americas',
             ],
         ]);

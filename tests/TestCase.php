@@ -32,9 +32,6 @@ abstract class TestCase extends BaseTest
             'database' => ':memory:',
             'prefix' => '',
         ]);
-
-        $app['config']->set('i18n.driver', 'json');
-        $app['config']->set('i18n.language_datasource', realpath(__DIR__ . '/../storage/i18n/languages.json'));
     }
 
     /**
