@@ -37,7 +37,7 @@ class StubAssembler
      * @param string $stub
      * @param array $enums
      */
-    public function __construct($stub, array $enums)
+    public function __construct(string $stub, array $enums)
     {
         $this->stub = $stub;
         $this->enums = $enums;
@@ -48,7 +48,7 @@ class StubAssembler
      *
      * @return string
      */
-    public function getStub()
+    public function getStub(): string
     {
         return $this->stub;
     }
@@ -59,7 +59,7 @@ class StubAssembler
      * @param string $command
      * @return self
      */
-    public function replaceCommand(string $command)
+    public function replaceCommand(string $command): self
     {
         $this->stub = str_replace('DummyCommand', $command, $this->stub);
 
@@ -71,14 +71,14 @@ class StubAssembler
      *
      * @return self
      */
-    public function replaceConstants()
+    public function replaceConstants(): self
     {
-        $padding = 4;
+        $constants = array_map(function (EnumDefinition $enum) {
+            $padding = 4;
 
-        $constants = array_map(function (EnumDefinition $enum) use ($padding) {
             $key = $this->export($enum->key, $padding);
 
-            return str_repeat(' ', $padding) . "public const {$enum->name} = {$key};";
+            return str_repeat(' ', $padding) . "public const $enum->name = $key;";
         }, $this->enums);
 
         $this->stub = str_replace('DummyConstants', implode(PHP_EOL, $constants), $this->stub);
@@ -91,7 +91,7 @@ class StubAssembler
      *
      * @return self
      */
-    public function replaceMap()
+    public function replaceMap(): self
     {
         // Map enums key and value pairs only if enums have values
         if ($this->enumsHaveValues()) {
@@ -110,7 +110,7 @@ class StubAssembler
      *
      * @return bool
      */
-    private function enumsHaveValues()
+    private function enumsHaveValues(): bool
     {
         foreach ($this->enums as $enum) {
             if ($enum->value !== null) {
@@ -126,14 +126,14 @@ class StubAssembler
      *
      * @return self
      */
-    public function replaceMapPairs()
+    public function replaceMapPairs(): self
     {
-        $padding = 12;
+        $pairs = array_map(function (EnumDefinition $enum) {
+            $padding = 12;
 
-        $pairs = array_map(function (EnumDefinition $enum) use ($padding) {
             $value = $this->export($enum->value, $padding);
 
-            return str_repeat(' ', $padding) . "static::{$enum->name} => {$value},";
+            return str_repeat(' ', $padding) . "static::$enum->name => {$value},";
         }, $this->enums);
 
         $this->stub = str_replace('DummyKeyValuePairs', implode(PHP_EOL, $pairs), $this->stub);

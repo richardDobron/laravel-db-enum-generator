@@ -11,7 +11,7 @@ Laravel package that introduces a new Artisan command to generate Enum classes f
 Via Composer
 
 ``` bash
-$ composer require dobron/laravel-db-enum-generator
+$ composer require dobron/laravel-db-enum-generator --dev
 ```
 
 

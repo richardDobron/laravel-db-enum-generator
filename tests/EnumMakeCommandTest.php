@@ -31,10 +31,7 @@ class EnumMakeCommandTest extends TestCase
             "--value" => "name",
         ])->assertExitCode(0);
 
-        $this->assertFileEquals(
-            $this->appPath('Enums/UserRoleTypes.php'),
-            __DIR__ . '/expected/enum.txt'
-        );
+        $this->assertMatchesSnapshot(file_get_contents($this->appPath('Enums/UserRoleTypes.php')));
     }
 
     /**
@@ -49,10 +46,7 @@ class EnumMakeCommandTest extends TestCase
             "--value" => "name",
         ])->assertExitCode(0);
 
-        $this->assertFileEquals(
-            $this->appPath('Enums/Languages.php'),
-            __DIR__ . '/expected/customized-enum-keys.txt'
-        );
+        $this->assertMatchesSnapshot(file_get_contents($this->appPath('Enums/Languages.php')));
     }
 
     /**
@@ -67,10 +61,7 @@ class EnumMakeCommandTest extends TestCase
             "--value" => "id,name,region",
         ])->assertExitCode(0);
 
-        $this->assertFileEquals(
-            $this->appPath('Enums/LanguagesEnum.php'),
-            __DIR__ . '/expected/multiple-values-in-map.txt'
-        );
+        $this->assertMatchesSnapshot(file_get_contents($this->appPath('Enums/LanguagesEnum.php')));
     }
 
     /**

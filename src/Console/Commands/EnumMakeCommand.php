@@ -13,7 +13,6 @@ use Illuminate\Support\Str;
 
 /**
  * The Artisan command to generate Enum classes.
- *
  */
 class EnumMakeCommand extends GeneratorCommand
 {
@@ -70,7 +69,7 @@ class EnumMakeCommand extends GeneratorCommand
      *
      * @return string
      */
-    protected function getStub()
+    protected function getStub(): string
     {
         return __DIR__ . '/../../../stubs/enum.stub';
     }
@@ -81,7 +80,7 @@ class EnumMakeCommand extends GeneratorCommand
      * @param  string  $rootNamespace
      * @return string
      */
-    protected function getDefaultNamespace($rootNamespace)
+    protected function getDefaultNamespace($rootNamespace): string
     {
         if ($path = $this->option('path')) {
             // Ensure the path starts with "app/"
@@ -105,7 +104,7 @@ class EnumMakeCommand extends GeneratorCommand
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      * @throws \Exception
      */
-    protected function buildClass($name)
+    protected function buildClass($name): string
     {
         $stub = parent::buildClass($name);
         $enums = $this->loadEnums();
@@ -123,7 +122,7 @@ class EnumMakeCommand extends GeneratorCommand
      * @return array
      * @throws \Exception
      */
-    private function loadEnums()
+    private function loadEnums(): array
     {
         $id = $this->option('id');
         $slug = $this->option('slug');
@@ -181,7 +180,7 @@ class EnumMakeCommand extends GeneratorCommand
      * @param array $parts
      * @return EnumDefinition
      */
-    private function hydrateEnumDefinition(array $parts)
+    private function hydrateEnumDefinition(array $parts): EnumDefinition
     {
         $enum = new EnumDefinition;
         $enum->name = $this->prepareConstantName($parts[0]);
@@ -194,9 +193,10 @@ class EnumMakeCommand extends GeneratorCommand
     /**
      * Prepare constant name.
      *
+     * @param $name
      * @return string
      */
-    private function prepareConstantName($name)
+    private function prepareConstantName($name): string
     {
         $name = strtoupper(str_replace('-', '_', $this->inflector->urlize($name)));
 
@@ -212,7 +212,7 @@ class EnumMakeCommand extends GeneratorCommand
      *
      * @return string
      */
-    private function compileCommand()
+    private function compileCommand(): string
     {
         $arguments = $this->arguments();
         unset($arguments[0]);

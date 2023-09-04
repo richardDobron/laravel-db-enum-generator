@@ -6,9 +6,15 @@ use dobron\LaravelDatabaseEnum\Providers\LaravelDatabaseEnumServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Application;
 use Orchestra\Testbench\TestCase as BaseTest;
+use Spatie\Snapshots\Driver;
+use Spatie\Snapshots\MatchesSnapshots;
 
 abstract class TestCase extends BaseTest
 {
+    use MatchesSnapshots {
+        assertMatchesSnapshot as protected assertMatchesSnapshotCall;
+    }
+
     /**
      * Application object
      *
@@ -101,7 +107,7 @@ abstract class TestCase extends BaseTest
      *
      * @return void
      */
-    public function setUp() :void
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -112,5 +118,10 @@ abstract class TestCase extends BaseTest
         Factory::guessFactoryNamesUsing(function (string $modelName) {
             return 'Database\\Factories\\' . class_basename($modelName) . 'Factory';
         });
+    }
+
+    public function assertMatchesSnapshot($actual, Driver $driver = null): void
+    {
+        $this->assertMatchesSnapshotCall($actual, $driver ?? new TextDriver());
     }
 }

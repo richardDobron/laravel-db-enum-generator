@@ -16,7 +16,7 @@ trait ExportsValues
      * @param int $incrementalPadding
      * @return string
      */
-    protected function export($value, $initialPadding = 0, $incrementalPadding = 4)
+    protected function export($value, int $initialPadding = 0, int $incrementalPadding = 4): string
     {
         if (is_array($value)) {
             return $this->exportArray($value, $initialPadding, $incrementalPadding);
@@ -45,7 +45,7 @@ trait ExportsValues
             return $value + 0;
         }
 
-        return is_string($value) ? "'{$value}'" : "{$value}";
+        return is_string($value) ? "'$value'" : "$value";
     }
 
     /**
@@ -56,18 +56,18 @@ trait ExportsValues
      * @param int $incrementalPadding
      * @return string
      */
-    protected function exportArray(array $array, $initialPadding = 0, $incrementalPadding = 4)
+    protected function exportArray(array $array, int $initialPadding = 0, int $incrementalPadding = 4): string
     {
         $padding = $initialPadding + $incrementalPadding;
         $indentation = str_repeat(' ', $padding);
         $exported = [];
 
         foreach ($array as $key => $value) {
-            $exportedKey = is_int($key) ? '' : "'{$key}' => ";
+            $exportedKey = is_int($key) ? '' : "'$key' => ";
             $exportedValue = $this->export($value, $padding, $incrementalPadding);
             $exported[] = $indentation . $exportedKey . $exportedValue;
         }
 
-        return "[\n" . implode(",\n", $exported) . ",\n" . str_repeat(' ', $initialPadding) . ']';
+        return "[" . PHP_EOL . implode("," . PHP_EOL, $exported) . "," . PHP_EOL . str_repeat(' ', $initialPadding) . ']';
     }
 }
