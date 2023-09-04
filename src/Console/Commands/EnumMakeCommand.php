@@ -89,6 +89,7 @@ class EnumMakeCommand extends GeneratorCommand
             $path = preg_replace('#^app\/#', '', $path);
             // Convert the path into namespace
             $namespace = implode('\\', array_map('ucfirst', explode('/', $path)));
+
             // Prepend the root namespace
             return $rootNamespace . '\\' . $namespace;
         }
